@@ -1,0 +1,42 @@
+Users
+-system user
+
+League
+id
+name
+
+Games
+-Sport event that has multiple scenarios to bet on
+
+Game States
+Created (event exists not ready for bets)
+Open for bets (users can bet on lines)
+InProgress (users can no longer bet on lines)
+Processing Payout (final calculations for payouts)
+Closed (event is done)
+
+BettingScenarios
+-describes a scenario in which users can bet on
+
+UserBets
+-bets that user makes on a scenario
+
+
+Phase 1
+Get spreads to display using a mockapi with dummy data
+Create the database
+Maybe setup user access
+(Moneyline Odds, Spread)
+
+Phase 2
+Pull in real data with live updates
+Add ability for users to filter down to events they care about
+
+Phase 3
+Give users the ability to setup payment info
+Setup ability for system to payout
+Figure out to verify users physical address
+
+
+
+

@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  home_team: MyString
+  visiting_team: MyString
+  game_status: 1
+  game_time: 2019-05-11 16:33:35
+
+two:
+  home_team: MyString
+  visiting_team: MyString
+  game_status: 1
+  game_time: 2019-05-11 16:33:35
