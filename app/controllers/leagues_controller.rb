@@ -39,13 +39,14 @@ class LeaguesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_league
-      @league = League.find(params[:id])
-    end
 
-    # Only allow a trusted parameter "white list" through.
-    def league_params
-      params.require(:league).permit(:name)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_league
+    @league = League.find(params[:id])
+  end
+
+  # Only allow a trusted parameter "white list" through.
+  def league_params
+    params.require(:league).permit(:name)
+  end
 end
