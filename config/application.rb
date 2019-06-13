@@ -1,4 +1,4 @@
-require_relative 'boot'
+require_relative "boot"
 
 require "rails"
 # Pick the frameworks you want:
@@ -33,8 +33,8 @@ module SportsBettingApi
     config.api_only = true
     config.middleware.insert_before 0, Rack::Cors do
       allow do
-        origins 'localhost:3000', 'localhost:8081'
-        resource '*', :headers => :any, :methods => :any
+        origins "localhost:3000", "localhost:8081", "localhost:8080"
+        resource "*", :headers => :any, :methods => :any
       end
     end
   end

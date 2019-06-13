@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  attr_accessor :auth_token
   before_create :generate_authentication_token!
   has_secure_password
 

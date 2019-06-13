@@ -15,7 +15,19 @@ class UserBetsController < ApplicationController
 
   # POST /user_bets
   def create
-    @user_bet = UserBet.new(user_bet_params)
+    puts user_bet_params
+    user = User.find_by(auth_token: params[:auth_token])
+    #user = User.find_by(auth_token: params["auth_token"])
+
+    puts user_bet_params
+    my_params = {
+      user_id: user.id,
+      betting_scenario_id: params[:betting_scenario_id],
+      amount: 55,
+    }
+    puts my_params
+
+    @user_bet = UserBet.new(my_params)
 
     if @user_bet.save
       render json: @user_bet, status: :created, location: @user_bet
@@ -39,13 +51,14 @@ class UserBetsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_user_bet
-      @user_bet = UserBet.find(params[:id])
-    end
 
-    # Only allow a trusted parameter "white list" through.
-    def user_bet_params
-      params.require(:user_bet).permit(:user_id, :betting_scenario_id, :amount)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_user_bet
+    @user_bet = UserBet.find(params[:id])
+  end
+
+  # Only allow a trusted parameter "white list" through.
+  def user_bet_params
+    params.require(:user_bet).permit(:user_id, :betting_scenario_id, :amount)
+  end
 end
