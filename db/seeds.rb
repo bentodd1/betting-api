@@ -24,14 +24,16 @@ i = 0
 end
 
 i = 0
-100.times do
+2.times do
   i += 1
   myPassword = Faker::Creature::Animal.name
-  myEmail = Faker::Internet.email
+  myEmail = Faker::Internet.unique.email
   puts myEmail
   puts myPassword
 
   digest = User.digest("password")
 
   User.create({ username: Faker::Name.unique.name, email: myEmail, password: myPassword, first_name: Faker::Name.name, last_name: Faker::Name.name, status: 0, password_digest: digest })
+
+  UserAccount.create({ user_id: i, ammount_free: Faker::Number.number(5), ammount_in_play: 0 })
 end

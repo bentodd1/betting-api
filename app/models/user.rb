@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  attr_accessor :auth_token
+  #attr_accessor :auth_token
   before_create :generate_authentication_token!
   has_secure_password
 
@@ -9,7 +9,7 @@ class User < ApplicationRecord
                     format: { with: VALID_EMAIL_REGEX },
                     uniqueness: { case_sensitive: false }
   has_secure_password
-  validates :password, presence: true, length: { minimum: 6 }
+  # validates :password, presence: true, length: { minimum: 6 }
 
   # Returns the hash digest of the given string.
   def User.digest(string)
@@ -20,7 +20,9 @@ class User < ApplicationRecord
 
   def generate_authentication_token!
     begin
+      puts "Generationg auth token"
       self.auth_token = Devise.friendly_token
+      puts self.auth_token
     end while self.class.exists?(auth_token: auth_token)
   end
 end

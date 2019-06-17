@@ -18,15 +18,18 @@ class UserBetsController < ApplicationController
     puts user_bet_params
     user = User.find_by(auth_token: params[:auth_token])
     #user = User.find_by(auth_token: params["auth_token"])
-
-    puts user_bet_params
+    user_account = UserAccount.find_by(user_id: user.id)
+    amount = params[:amount].to_i
+    puts 'amount'
+    puts amount
     my_params = {
       user_id: user.id,
       betting_scenario_id: params[:betting_scenario_id],
-      amount: 55,
+      amount: params[:amount],
     }
-    puts my_params
-
+    user_account.ammount_free = user_account.ammount_free - amount
+    user_account.ammount_in_play = user_account.ammount_in_play + amount
+    user_account.save
     @user_bet = UserBet.new(my_params)
 
     if @user_bet.save

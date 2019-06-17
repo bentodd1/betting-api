@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  ammount_free: 9.99
+  ammount_in_play: 9.99
+
+two:
+  user: two
+  ammount_free: 9.99
+  ammount_in_play: 9.99

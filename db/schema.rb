@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_27_151815) do
+ActiveRecord::Schema.define(version: 2019_06_13_051857) do
 
   create_table "betting_scenarios", force: :cascade do |t|
     t.string "description"
@@ -43,6 +43,15 @@ ActiveRecord::Schema.define(version: 2019_05_27_151815) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "user_accounts", force: :cascade do |t|
+    t.integer "user_id"
+    t.decimal "ammount_free"
+    t.decimal "ammount_in_play"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_user_accounts_on_user_id"
   end
 
   create_table "user_bets", force: :cascade do |t|
