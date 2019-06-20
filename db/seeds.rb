@@ -1,4 +1,8 @@
 require "faker"
+require "net/http"
+require "uri"
+require "json"
+require "faker"
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
 #
@@ -6,7 +10,7 @@ require "faker"
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-
+=begin
 League.create({ name: "NBA" })
 League.create({ name: "NFL" })
 League.create({ name: "NHL" })
@@ -24,7 +28,7 @@ i = 0
 end
 
 i = 0
-2.times do
+1.times do
   i += 1
   myPassword = Faker::Creature::Animal.name
   myEmail = Faker::Internet.unique.email
@@ -37,3 +41,29 @@ i = 0
 
   UserAccount.create({ user_id: i, ammount_free: Faker::Number.number(5), ammount_in_play: 0 })
 end
+=end
+# Headers key X-RapidAPI-Host value odds.p.rapidapi.com
+#key X-RapidAPI-Key value bd90c1b664mshed16a790f8bcc0cp1c23a4jsn68c19c3c9c6e
+uri = URI.parse("https://odds.p.rapidapi.com/v1/sports")
+request = Net::HTTP::Get.new(uri)
+request.content_type = "application/json"
+headers = {
+  "X-RapidAPI-Host" => "odds.p.rapidapi.com",
+  "X-RapidAPI-Key" => "bd90c1b664mshed16a790f8bcc0cp1c23a4jsn68c19c3c9c6e",
+}
+
+request["X-RapidAPI-Host"] = "odds.p.rapidapi.com"
+request["X-RapidAPI-Key"] = "bd90c1b664mshed16a790f8bcc0cp1c23a4jsn68c19c3c9c6e"
+
+req_options = {
+  use_ssl: uri.scheme == "https",
+}
+
+@response = Net::HTTP.start(uri.hostname, uri.port, req_options) do |http|
+  http.request(request)
+end
+puts @response.body
+puts @response.message
+puts @response.code
+
+info = @response.body

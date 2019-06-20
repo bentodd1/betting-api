@@ -22,6 +22,7 @@ Things you may want to cover:
 * Deployment instructions
 rake db:drop db:create db:migrate
 rails dbconsole
+pragma table_info(users)
 rake db:seed
 .table
 * ...
