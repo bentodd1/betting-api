@@ -17,7 +17,7 @@ class UserAccountsController < ApplicationController
     authToken = request.headers["Authorization"]
     puts authToken
     user = User.find_by(id: 1)
-    #user = User.find_by(auth_token: authToken)
+    user = User.find_by(auth_token: authToken)
     puts user
     #user = User.find_by(auth_token: params["auth_token"])
     user_account = UserAccount.find_by(user_id: user.id)

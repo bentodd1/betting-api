@@ -20,7 +20,7 @@ class UserBetsController < ApplicationController
     #user = User.find_by(auth_token: params["auth_token"])
     user_account = UserAccount.find_by(user_id: user.id)
     amount = params[:amount].to_i
-    puts 'amount'
+    puts "amount"
     puts amount
     my_params = {
       user_id: user.id,
@@ -31,7 +31,8 @@ class UserBetsController < ApplicationController
     user_account.ammount_in_play = user_account.ammount_in_play + amount
     user_account.save
     @user_bet = UserBet.new(my_params)
-
+    puts user_account.ammount_free
+    puts user_account.ammount_in_play
     if @user_bet.save
       render json: @user_bet, status: :created, location: @user_bet
     else
